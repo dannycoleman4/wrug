@@ -186,17 +186,19 @@ pub fn truncate (value: &str, places: usize) -> Result<String, Box<dyn Error>> {
     Ok(String::from(&value[..dec_index + to_add]))
 }
 
-// pub fn get_decimal_places (value: &str) -> Result<usize, Box<dyn Error>> {
-//     if !is_number(value){
-//         return Err(box_dyn_error("can't get decimal places of non-number"));
-//     }
-//     let places = match value.find('.'){
-//         Some(ind) => {
-//             value[ind+1..].len()
-//         },
-//         None => {
-//             0
-//         },
-//     };
-//     Ok(places)
-// }
+pub fn get_decimal_places (value: &str) -> Result<usize, Box<dyn Error>> {
+    if !is_number(value){
+        return Err(box_dyn_error("can't get decimal places of non-number"));
+    }
+    let places = match value.find('.'){
+        Some(ind) => {
+            value[ind+1..].len()
+        },
+        None => {
+            0
+        },
+    };
+    Ok(places)
+}
+
+
