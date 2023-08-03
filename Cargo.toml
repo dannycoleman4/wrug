@@ -1,0 +1,12 @@
+[package]
+name = "wrug"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+rug = { version = "1.19.2", features = ["serde"] }
+serde = { version = "1.0.151", features = ["derive"] }
+ethereum-types = "0.14.1"
