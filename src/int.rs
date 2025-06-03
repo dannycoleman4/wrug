@@ -365,6 +365,19 @@ impl Int {
         Ok(Self (inner))
     }
 
+
+    pub fn from_dec_str(s: &str, with_0x_prefix: bool) -> Result<Self, Box<dyn Error>> {
+        let inner = if with_0x_prefix {
+            if !s.starts_with("0x") {
+                return Err(box_dyn_error("expected 0x-prefixed hex string"));
+            }
+            Integer::from_str_radix(&s[2..], 10)?
+        } else {
+            Integer::from_str_radix(s, 10)?
+        };
+        Ok(Self (inner))
+    }
+
     pub fn div_rnd (self, den: &Self)-> Self {
         let (quo, rem) = self.0.div_rem(Integer::from(&den.0));
         let double_rem = Integer::from(2) * &rem;
