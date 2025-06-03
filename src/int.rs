@@ -611,6 +611,14 @@ impl Int {
         self.0.mod_u(modulo)
     }
 
+    pub fn abi_encode(&self) -> Vec<u8> {
+        let incomplete = self.0.keep_bits_ref(256);
+        let sized = Integer::from(incomplete);
+        let digits = sized.to_digits::<u8>(Order::Msf);
+        let padded = zero_pad_start(digits, 32);
+        padded
+    }
+
 }
 
 
