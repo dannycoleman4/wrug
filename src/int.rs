@@ -621,4 +621,14 @@ impl Int {
 
 }
 
+fn zero_pad_start(data: Vec<u8>, total_len: usize) -> Vec<u8> {
+    if data.len() < total_len {
+        let pad_len = total_len - data.len();
+        let mut result = vec![0; pad_len]; // Preallocate padding
+        result.extend(data); // Append the original data
+        result
+    } else {
+        data
+    }
+}
 
